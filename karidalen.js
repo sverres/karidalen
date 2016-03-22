@@ -14,7 +14,7 @@ var attribution = new ol.Attribution({
 });
 
 var extent1200m = [596417, 6731415, 597617, 6732615];
-var extent150km = [522017, 6657015,672017, 6807015];
+var extent150km = [522017, 6657015, 672017, 6807015];
 
 
 var projection = new ol.proj.Projection({
@@ -22,26 +22,38 @@ var projection = new ol.proj.Projection({
   extent: extent150km
 });
 
-var topo2 = new ol.layer.Tile({
+var bakgrunn = new ol.layer.Tile({
+  extent: extent150km,
+  source: new ol.source.TileWMS({
+    attributions: [attribution],
+    url: 'http://openwms.statkart.no/skwms1/wms.topo2.graatone?',
+    params: {
+      'LAYERS': 'topo2_graatone_WMS',
+      'STYLES': 'default'
+    },
+  })
+});
+
+var veger = new ol.layer.Tile({
   extent: extent150km,
   source: new ol.source.TileWMS({
     attributions: [attribution],
     url: 'http://openwms.statkart.no/skwms1/wms.topo2?',
     params: {
-      'LAYERS': 'topo2_WMS',
+      'LAYERS': 'Veger',
       'STYLES': 'default'
     },
   })
 });
 
 var map = new ol.Map({
-  layers: [topo2],
+  layers: [bakgrunn, veger],
   target: 'map',
   view: new ol.View({
     projection: projection,
     center: [597017, 6732015],
     minResolution: 0.1,
     maxResolution: 500.0,
-    resolution: 500.0,
+    resolution: 20.0,
   })
 });
