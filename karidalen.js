@@ -13,15 +13,17 @@ var attribution = new ol.Attribution({
   html: 'Kartgrunnlag: <a href="http://kartverket.no">Kartverket</a>'
 });
 
-var extent = [596417, 6731415, 597617, 6732615];
+var extent1200m = [596417, 6731415, 597617, 6732615];
+var extent150km = [522017, 6657015,672017, 6807015];
+
 
 var projection = new ol.proj.Projection({
   code: 'EPSG:25832',
-  extent: extent
+  extent: extent150km
 });
 
 var topo2 = new ol.layer.Tile({
-  extent: extent,
+  extent: extent150km,
   source: new ol.source.TileWMS({
     attributions: [attribution],
     url: 'http://openwms.statkart.no/skwms1/wms.topo2?',
@@ -39,7 +41,7 @@ var map = new ol.Map({
     projection: projection,
     center: [597017, 6732015],
     minResolution: 0.1,
-    maxResolution: 5.0,
-    resolution: 1.0,
+    maxResolution: 500.0,
+    resolution: 500.0,
   })
 });
