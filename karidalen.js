@@ -5,9 +5,11 @@
  *
  */
 
-//http://kartverket.no/Kart/Gratis-kartdata/WMS-tjenester/
-//http://status.kartverket.no/tjenester/openwms.py?
-//http://openwms.statkart.no/skwms1/wms.topo2?request=GetCapabilities&Service=WMS
+/*
+http://kartverket.no/Kart/Gratis-kartdata/WMS-tjenester/
+http://status.kartverket.no/tjenester/openwms.py?
+http://openwms.statkart.no/skwms1/wms.topo2?request=GetCapabilities&Service=WMS
+*/
 
 var attribution = new ol.Attribution({
   html: 'Kartgrunnlag: <a href="http://kartverket.no">Kartverket</a>'
