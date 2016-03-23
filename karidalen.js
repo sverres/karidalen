@@ -50,8 +50,6 @@ var veger = new ol.layer.Tile({
 
 var koter = new ol.layer.Tile({
   extent: extent1200m,
-  //minResolution: 0.1,
-  //maxResolution: 0.5,
   source: new ol.source.TileWMS({
     attributions: [attribution],
     url: 'http://openwms.statkart.no/skwms1/wms.topo2?',
