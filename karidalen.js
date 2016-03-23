@@ -42,20 +42,34 @@ var veger = new ol.layer.Tile({
     attributions: [attribution],
     url: 'http://openwms.statkart.no/skwms1/wms.topo2?',
     params: {
-      'LAYERS': 'Veger',
+      'LAYERS': 'N250Bilveg',
+      'STYLES': 'default'
+    },
+  })
+});
+
+var koter = new ol.layer.Tile({
+  extent: extent1200m,
+  //minResolution: 0.1,
+  //maxResolution: 0.5,
+  source: new ol.source.TileWMS({
+    attributions: [attribution],
+    url: 'http://openwms.statkart.no/skwms1/wms.topo2?',
+    params: {
+      'LAYERS': 'fkb_hoydekurver_1m',
       'STYLES': 'default'
     },
   })
 });
 
 var map = new ol.Map({
-  layers: [bakgrunn, veger],
+  layers: [bakgrunn, veger, koter],
   target: 'map',
   view: new ol.View({
     projection: projection,
     center: [597017, 6732015],
     minResolution: 0.1,
     maxResolution: 500.0,
-    resolution: 20.0,
+    resolution: 1.0,
   })
 });
