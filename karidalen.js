@@ -26,34 +26,44 @@ var projection = new ol.proj.Projection({
   extent: extent150km
 });
 
-var resolutions = [
+resolutions = [
+  677,
+  //338.5,
+  169.25,
+  //84.625,
   42.3125,
-  21.15625,
+  //21.15625,
   10.578125,
-  5.2890625,
+  //5.2890625,
   2.64453125,
   1.322265625,
   0.6611328125,
   0.33056640625,
-  0.165283203125
+  //0.165283203125
 ];
+
+var switchLayerResolution = resolutions[4];
 
 var matrixSet = 'EPSG:25832'; // EUREF89, UTM zone 32
 
 var matrixIds = [
+  'EPSG:25832:5',
+  //'EPSG:25832:6',
+  'EPSG:25832:7',
+  //'EPSG:25832:8',
   'EPSG:25832:9',
-  'EPSG:25832:10',
+  //'EPSG:25832:10',
   'EPSG:25832:11',
-  'EPSG:25832:12',
+  //'EPSG:25832:12',
   'EPSG:25832:13',
   'EPSG:25832:14',
   'EPSG:25832:15',
   'EPSG:25832:16',
-  'EPSG:25832:17'
+  //'EPSG:25832:17'
 ];
 
 var grunnkart = new ol.layer.Tile({
-  minResolution: resolutions[5],
+  minResolution: switchLayerResolution,
   source: new ol.source.WMTS({
     attributions: [attribution],
     url: 'http://opencache.statkart.no/gatekeeper/gk/gk.open_wmts?',
@@ -70,7 +80,7 @@ var grunnkart = new ol.layer.Tile({
 });
 
 var topo2 = new ol.layer.Tile({
-  maxResolution: resolutions[5],
+  maxResolution: switchLayerResolution,
   source: new ol.source.WMTS({
     attributions: [attribution],
     url: 'http://opencache.statkart.no/gatekeeper/gk/gk.open_wmts?',
@@ -123,12 +133,12 @@ var koter = new ol.layer.Tile({
 });
 
 var map = new ol.Map({
-  layers: [grunnkart,topo2],
+  layers: [grunnkart, topo2],
   target: 'map',
   view: new ol.View({
     projection: projection,
     center: [597017, 6732015],
     resolutions: resolutions,
-    zoom: 6
+    zoom: 4
   })
 });
