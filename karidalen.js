@@ -7,8 +7,12 @@
 
 /*
 http://kartverket.no/Kart/Gratis-kartdata/WMS-tjenester/
+
 http://status.kartverket.no/tjenester/openwms.py?
 http://openwms.statkart.no/skwms1/wms.topo2?request=GetCapabilities&Service=WMS
+
+http://opencache.statkart.no/gatekeeper/gk/gk.open_wmts?
+Version=1.0.0&service=wmts&request=getcapabilities
 
 http://wms.geonorge.no/kr/koordsys_res.txt
 */
@@ -44,7 +48,8 @@ var resolutionsKartverket = [
   1.322265625,
   0.6611328125,
   0.33056640625,
-  0.165283203125
+  0.165283203125,
+  0.0826416015625
 ];
 
 var matrixSet = 'EPSG:25832'; // EUREF89, UTM zone 32
@@ -67,7 +72,8 @@ var matrixIdsKartverket = [
   'EPSG:25832:14',
   'EPSG:25832:15',
   'EPSG:25832:16',
-  'EPSG:25832:17'
+  'EPSG:25832:17',
+  'EPSG:25832:18'
 ];
 
 var matrixIds = [
@@ -129,6 +135,8 @@ var topo2 = new ol.layer.Tile({
 });
 
 var veger = new ol.layer.Tile({
+  maxResolution: resolutions[2],
+  minResolution: resolutions[3],
   extent: extent150km,
   source: new ol.source.TileWMS({
     attributions: [attribution],
@@ -147,6 +155,6 @@ var map = new ol.Map({
     projection: projection,
     center: [597017, 6732015],
     resolutions: resolutions,
-    resolution: resolutions[3]
+    zoom: 3
   })
 });
